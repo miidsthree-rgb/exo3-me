@@ -3077,58 +3077,62 @@ export const MANUEL_EXERCISES = [
     "subject": "francais",
     "chapter": "Chapitre 1 : Se raconter, l'Autobiographie",
     "badge": "10 Questions sur Cahier",
-    "title": "Exercice 51 : Analyse de texte autobiographique et pacte de lecture #1",
-    "statement": "Extrait d'une œuvre autobiographique majeure de la littérature française (Pagnol, Rousseau, Perec). Répondre aux 10 questions de compréhension et d'analyse.",
+    "title": "Exercice 51 : Marcel Pagnol - La Gloire de mon père (Autobiographie #1)",
+    "statement": "Analyse littéraire de l'extrait autobiographique de Marcel Pagnol. Répondre aux 10 questions sur votre cahier.",
+    "author": "Marcel Pagnol",
+    "work": "La Gloire de mon père",
+    "year": "1957",
+    "readingText": "« Je suis né dans la ville d'Aubagne, sous le Garlaban couronné de chèvres, au temps des derniers chevriers... Mon père était instituteur public. Il m'apprit à lire avant même que je sache marcher. Je me souviens de ces premiers mots déchiffrés sur le tableau noir du village, dans l'odeur de la craie et de la lavande qui entrait par la fenêtre ouverte sur la colline provençale. »",
     "questions": [
       {
         "num": "Question 1",
         "text": "Identifier le genre littéraire de ce texte et justifier votre réponse.",
-        "correction": "C'est un récit autobiographique car l'auteur, le narrateur et le personnage principal forment une seule et même personne."
+        "correction": "C'est un récit autobiographique car l'auteur (Marcel Pagnol), le narrateur et le personnage principal forment une seule et même personne."
       },
       {
         "num": "Question 2",
         "text": "À quel système d'énonciation ce texte appartient-il (ancré ou coupé de la situation d'énonciation) ?",
-        "correction": "Texte ancré dans la situation d'énonciation avec l'utilisation de la 1ère personne du singulier et des repères temporels."
+        "correction": "Texte ancré dans la situation d'énonciation avec l'utilisation de la 1ère personne du singulier (« Je suis né », « Mon père ») et des repères temporels."
       },
       {
         "num": "Question 3",
         "text": "Quel est le temps dominamment utilisé pour les souvenirs d'enfance ?",
-        "correction": "L'imparfait de l'indicatif est utilisé pour la description et les actions répétitives passées."
+        "correction": "L'imparfait de l'indicatif (« était », « entrait ») est utilisé pour la description et les actions répétitives ou durables du passé."
       },
       {
         "num": "Question 4",
         "text": "Quel est le rôle du passé simple dans les moments de rupture du récit ?",
-        "correction": "Le passé simple exprime une action ponctuelle, soudaine et délimitée dans le temps."
+        "correction": "Le passé simple (« apprit ») exprime une action ponctuelle, accomplie et délimitée dans le temps."
       },
       {
         "num": "Question 5",
         "text": "Définir le \"pacte autobiographique\" théorisé par Philippe Lejeune.",
-        "correction": "C'est l'engagement implicit de l'auteur à dire la vérité sur sa propre vie auprès du lecteur."
+        "correction": "C'est l'engagement implicite de l'auteur à dire la vérité sur sa propre vie et son identité auprès du lecteur."
       },
       {
         "num": "Question 6",
-        "text": "Identifier la figure de style dans : \"Mon enfance fut un long fleuve tranquille\".",
-        "correction": "C'est une métaphore (comparaison sans outil de comparaison)."
+        "text": "Identifier la figure de style dans : \"Le Garlaban couronné de chèvres\".",
+        "correction": "C'est une personnification (attribuer une couronne humaine à une montagne)."
       },
       {
         "num": "Question 7",
-        "text": "Relever un champ lexical dominant lié aux sentiments de l'auteur.",
-        "correction": "Champ lexical de la nostalgie et du souvenir (mémoire, autrefois, doux, mélancolie)."
+        "text": "Relever un champ lexical dominant lié aux sens et aux souvenirs d'enfance.",
+        "correction": "Champ lexical des sens et de la Provence : odeur, craie, lavande, fenêtre ouverte, colline."
       },
       {
         "num": "Question 8",
-        "text": "Quelle est la différence entre le \"je nettoyant\" (narrateur adulte) et le \"je nettoyé\" (enfant) ?",
-        "correction": "Le narrateur adulte porte un regard rétrospectif et analytique sur l'enfant naïf qu'il était."
+        "text": "Quelle est la différence entre le narrateur adulte et l'enfant ?",
+        "correction": "Le narrateur adulte porte un regard rétrospectif et tendre sur l'enfant émouvant et naïf qu'il était."
       },
       {
         "num": "Question 9",
         "text": "Donner un synonyme du mot \"rétrospectif\".",
-        "correction": "Synonymes : nostalgique, tourné vers le passé, ultérieur."
+        "correction": "Synonymes : nostalgique, orienté vers le passé, évocateur."
       },
       {
         "num": "Question 10",
-        "text": "Quelle est la visée principale de l'auteur à travers cette rédaction ?",
-        "correction": "Conserver la mémoire de son passé, mieux se comprendre et rendre hommage à ses proches."
+        "text": "Quelle est la visée principale de Marcel Pagnol à travers ce texte ?",
+        "correction": "Rendre hommage à son père instituteur, préserver la mémoire de son enfance provençale et faire partager son amour de la lecture."
       }
     ]
   },
@@ -3137,58 +3141,62 @@ export const MANUEL_EXERCISES = [
     "subject": "francais",
     "chapter": "Chapitre 1 : Se raconter, l'Autobiographie",
     "badge": "10 Questions sur Cahier",
-    "title": "Exercice 52 : Analyse de texte autobiographique et pacte de lecture #2",
-    "statement": "Extrait d'une œuvre autobiographique majeure de la littérature française (Pagnol, Rousseau, Perec). Répondre aux 10 questions de compréhension et d'analyse.",
+    "title": "Exercice 52 : Jean-Jacques Rousseau - Les Confessions (Autobiographie #2)",
+    "statement": "Analyse littéraire du préambule des Confessions. Répondre aux 10 questions de compréhension et de langue.",
+    "author": "Jean-Jacques Rousseau",
+    "work": "Les Confessions",
+    "year": "1782",
+    "readingText": "« Je forme une entreprise qui n'eut jamais d'exemple et dont l'exécution n'aura point d'imitateur. Je veux montrer à mes semblables un homme dans toute la vérité de la nature ; et cet homme, ce sera moi. Moi seul. Je sens mon cœur et je connais les hommes. Je ne suis fait comme aucun de ceux que j'ai vus ; j'ose croire n'être fait comme aucun de ceux qui existent. »",
     "questions": [
       {
         "num": "Question 1",
-        "text": "Identifier le genre littéraire de ce texte et justifier votre réponse.",
-        "correction": "C'est un récit autobiographique car l'auteur, le narrateur et le personnage principal forment une seule et même personne."
+        "text": "De quel texte célèbre est extrait ce passage et de quelle époque date-t-il ?",
+        "correction": "Extrait du Préambule des Confessions de Jean-Jacques Rousseau, œuvre fondatrice du genre autobiographique (XVIIIe siècle / Lumières)."
       },
       {
         "num": "Question 2",
-        "text": "À quel système d'énonciation ce texte appartient-il (ancré ou coupé de la situation d'énonciation) ?",
-        "correction": "Texte ancré dans la situation d'énonciation avec l'utilisation de la 1ère personne du singulier et des repères temporels."
+        "text": "Comment l'auteur affirme-t-il l'originalité absolue de son projet ?",
+        "correction": "Par l'emploi de négations absolues : « n'eut jamais d'exemple », « n'aura point d'imitateur », « aucun de ceux que j'ai vus »."
       },
       {
         "num": "Question 3",
-        "text": "Quel est le temps dominamment utilisé pour les souvenirs d'enfance ?",
-        "correction": "L'imparfait de l'indicatif est utilisé pour la description et les actions répétitives passées."
+        "text": "Quel pronom personnel est omniprésent et pourquoi ?",
+        "correction": "Le pronom « Je » (et la forme tonique « moi ») est omniprésent car le sujet d'étude est l'auteur lui-même."
       },
       {
         "num": "Question 4",
-        "text": "Quel est le rôle du passé simple dans les moments de rupture du récit ?",
-        "correction": "Le passé simple exprime une action ponctuelle, soudaine et délimitée dans le temps."
+        "text": "Expliquer l'expression \"dans toute la vérité de la nature\".",
+        "correction": "Rousseau promet de s'exposer sans fard, avec ses qualités mais aussi ses défauts et ses faiblesses."
       },
       {
         "num": "Question 5",
-        "text": "Définir le \"pacte autobiographique\" théorisé par Philippe Lejeune.",
-        "correction": "C'est l'engagement implicit de l'auteur à dire la vérité sur sa propre vie auprès du lecteur."
+        "text": "Relever la phrase courte marquant l'affirmation de la singularité de l'auteur.",
+        "correction": "« Moi seul. » (Phrase nominale d'insistance)."
       },
       {
         "num": "Question 6",
-        "text": "Identifier la figure de style dans : \"Mon enfance fut un long fleuve tranquille\".",
-        "correction": "C'est une métaphore (comparaison sans outil de comparaison)."
+        "text": "Identifier les verbes d'état et de sentiment au présent de l'indicatif.",
+        "correction": "« sens », « connais », « suis », « ose » (présent d'énonciation du narrateur au moment de l'écriture)."
       },
       {
         "num": "Question 7",
-        "text": "Relever un champ lexical dominant lié aux sentiments de l'auteur.",
-        "correction": "Champ lexical de la nostalgie et du souvenir (mémoire, autrefois, doux, mélancolie)."
+        "text": "Quelle valeur a le futur dans « cet homme, ce sera moi » ?",
+        "correction": "Futur de certitude et d'engagement solennel du narrateur."
       },
       {
         "num": "Question 8",
-        "text": "Quelle est la différence entre le \"je nettoyant\" (narrateur adulte) et le \"je nettoyé\" (enfant) ?",
-        "correction": "Le narrateur adulte porte un regard rétrospectif et analytique sur l'enfant naïf qu'il était."
+        "text": "En quoi ce texte constitue-t-il un exemple parfait de \"Pacte autobiographique\" ?",
+        "correction": "Car l'auteur promet devant le lecteur et la postérité la transparence et l'honnêteté totale."
       },
       {
         "num": "Question 9",
-        "text": "Donner un synonyme du mot \"rétrospectif\".",
-        "correction": "Synonymes : nostalgique, tourné vers le passé, ultérieur."
+        "text": "Donner la classe grammaticale du mot \"semblables\".",
+        "correction": "Nom masculin pluriel (désigne les autres êtres humains)."
       },
       {
         "num": "Question 10",
-        "text": "Quelle est la visée principale de l'auteur à travers cette rédaction ?",
-        "correction": "Conserver la mémoire de son passé, mieux se comprendre et rendre hommage à ses proches."
+        "text": "Réécrire « Je sens mon cœur » à la 3ème personne du pluriel au passé simple.",
+        "correction": "« Ils sentirent leur cœur. »"
       }
     ]
   },
@@ -3197,58 +3205,62 @@ export const MANUEL_EXERCISES = [
     "subject": "francais",
     "chapter": "Chapitre 1 : Se raconter, l'Autobiographie",
     "badge": "10 Questions sur Cahier",
-    "title": "Exercice 53 : Analyse de texte autobiographique et pacte de lecture #3",
-    "statement": "Extrait d'une œuvre autobiographique majeure de la littérature française (Pagnol, Rousseau, Perec). Répondre aux 10 questions de compréhension et d'analyse.",
+    "title": "Exercice 53 : Georges Perec - W ou le Souvenir d'enfance (Autobiographie #3)",
+    "statement": "Analyse de la mémoire et de l'absence de souvenir chez Georges Perec. Répondre aux 10 questions.",
+    "author": "Georges Perec",
+    "work": "W ou le Souvenir d'enfance",
+    "year": "1975",
+    "readingText": "« Je n'ai pas de souvenirs d'enfance. Jusqu'à ma douzième année environ, mon histoire tient en quelques lignes : j'ai perdu mon père à quatre ans, ma mère à six ; j'ai passé la guerre dans diverses pensions de Villard-de-Lans. En 1945, les sœurs de mon père m'adoptèrent. Cette absence de souvenir m'a longtemps hanté... »",
     "questions": [
       {
         "num": "Question 1",
-        "text": "Identifier le genre littéraire de ce texte et justifier votre réponse.",
-        "correction": "C'est un récit autobiographique car l'auteur, le narrateur et le personnage principal forment une seule et même personne."
+        "text": "Quelle est la particularité troublante énoncée dès la première phrase du texte ?",
+        "correction": "L'auteur affirme de manière paradoxale n'avoir aucun souvenir d'enfance (« Je n'ai pas de souvenirs d'enfance »)."
       },
       {
         "num": "Question 2",
-        "text": "À quel système d'énonciation ce texte appartient-il (ancré ou coupé de la situation d'énonciation) ?",
-        "correction": "Texte ancré dans la situation d'énonciation avec l'utilisation de la 1ère personne du singulier et des repères temporels."
+        "text": "Quels événements tragiques expliquent cette rupture dans la mémoire de l'auteur ?",
+        "correction": "La perte précoce de son père à 4 ans et de sa mère à 6 ans pendant la Seconde Guerre mondiale (Shoah)."
       },
       {
         "num": "Question 3",
-        "text": "Quel est le temps dominamment utilisé pour les souvenirs d'enfance ?",
-        "correction": "L'imparfait de l'indicatif est utilisé pour la description et les actions répétitives passées."
+        "text": "Quel est le temps utilisé dans « m'adoptèrent » et quelle est sa valeur ?",
+        "correction": "Le passé simple de l'indicatif pour exprimer une action ponctuelle et achevée dans le passé."
       },
       {
         "num": "Question 4",
-        "text": "Quel est le rôle du passé simple dans les moments de rupture du récit ?",
-        "correction": "Le passé simple exprime une action ponctuelle, soudaine et délimitée dans le temps."
+        "text": "Identifier la figure d'insistance au début du texte.",
+        "correction": "Énumération sobre et factuelle des événements dramatiques (« à quatre ans », « à six »)."
       },
       {
         "num": "Question 5",
-        "text": "Définir le \"pacte autobiographique\" théorisé par Philippe Lejeune.",
-        "correction": "C'est l'engagement implicit de l'auteur à dire la vérité sur sa propre vie auprès du lecteur."
+        "text": "Donner un synonyme du verbe \"hanter\" dans ce contexte.",
+        "correction": "Synonymes : poursuivre, obséder, tourmenter, habiter."
       },
       {
         "num": "Question 6",
-        "text": "Identifier la figure de style dans : \"Mon enfance fut un long fleuve tranquille\".",
-        "correction": "C'est une métaphore (comparaison sans outil de comparaison)."
+        "text": "Comment s'appelle le procédé autobiographique consistant à reconstituer son passé par l'écriture ?",
+        "correction": "Le travail de mémoire ou quête autobiographique rétrospective."
       },
       {
         "num": "Question 7",
-        "text": "Relever un champ lexical dominant lié aux sentiments de l'auteur.",
-        "correction": "Champ lexical de la nostalgie et du souvenir (mémoire, autrefois, doux, mélancolie)."
+        "text": "Nature et fonction de la proposition : « que je n'ai pas de souvenirs ».",
+        "correction": "Proposition subordonnée conjonctive, COD du verbe énoncer."
       },
       {
         "num": "Question 8",
-        "text": "Quelle est la différence entre le \"je nettoyant\" (narrateur adulte) et le \"je nettoyé\" (enfant) ?",
-        "correction": "Le narrateur adulte porte un regard rétrospectif et analytique sur l'enfant naïf qu'il était."
+        "text": "Pourquoi l'écriture devient-elle nécessaire pour Perec ?",
+        "correction": "Pour combler le vide de la mémoire, lutter contre l'oubli et retrouver la trace de ses parents disparus."
       },
       {
         "num": "Question 9",
-        "text": "Donner un synonyme du mot \"rétrospectif\".",
-        "correction": "Synonymes : nostalgique, tourné vers le passé, ultérieur."
+        "text": "Identifier le temps du verbe « tient ».",
+        "correction": "Présent de l'indicatif à valeur de vérité générale / constatation."
       },
       {
         "num": "Question 10",
-        "text": "Quelle est la visée principale de l'auteur à travers cette rédaction ?",
-        "correction": "Conserver la mémoire de son passé, mieux se comprendre et rendre hommage à ses proches."
+        "text": "Réécrire « J'ai perdu mon père » au plus-que-parfait de l'indicatif.",
+        "correction": "« J'avais perdu mon père. »"
       }
     ]
   },

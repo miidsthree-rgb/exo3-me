@@ -52,6 +52,14 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  // Auto-adapt exoCount à 2 maximum pour le Français afin d'afficher confortablement les textes littéraires
+  useEffect(() => {
+    if (activeSubject === 'francais' && exoCount > 2) {
+      setExoCount(2);
+      if (activeTargetSlot >= 2) setActiveTargetSlot(0);
+    }
+  }, [activeSubject]);
+
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch((err) => {
@@ -118,7 +126,7 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
         <div className="flex items-center space-x-2">
           <div className="bg-white/10 backdrop-blur-md p-1 rounded-xl border border-white/20 flex items-center space-x-1 text-[10px]">
             <span className="font-bold text-amber-300 px-1">Grille :</span>
-            {[1, 2, 3, 4].map((count) => (
+            {(activeSubject === 'francais' ? [1, 2] : [1, 2, 3, 4]).map((count) => (
               <button
                 key={count}
                 onClick={() => {
@@ -134,6 +142,11 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
                 {count === 4 ? '4 Exos (Grille 2x2)' : `${count} Exo`}
               </button>
             ))}
+            {activeSubject === 'francais' && (
+              <span className="text-[9px] font-bold text-amber-200 px-1 italic">
+                (Max 2 Exos en Français)
+              </span>
+            )}
           </div>
 
           <button
@@ -300,7 +313,7 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
         {/* CONTENU PRINCIPAL À DROITE */}
         <div className={`${isSidebarOpen ? 'lg:col-span-9' : 'lg:col-span-12'} transition-all duration-300 min-h-[calc(100vh-95px)] flex flex-col`}>
           
-          {/* GRILLE D'EXERCICES QUI REMPLIT 100% DE LA HAUTEUR ET ÉLIMINE L'ESPACE VIDE EN BAS */}
+          {/* GRILLE D'EXERCICES AVEC TAILLE DE POLICE DYNAMIQUE ADAPTÉE AU NOMBRE D'EXERCICES */}
           <div className={`grid gap-3 flex-1 h-full ${
             exoCount === 4 
               ? 'grid-cols-1 md:grid-cols-2 md:grid-rows-2 min-h-[calc(100vh-95px)]' 
@@ -316,71 +329,101 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
               const isGlobalSolRevealed = showSolutions[slotIndex];
               const isTargetingThisSlot = activeTargetSlot === slotIndex && exoCount > 1;
 
+              // Tailles de police adaptatives (Plus il y a peu d'exos sur l'écran, plus la police est GRANDE !)
+              const titleSize = exoCount === 1 ? 'text-lg sm:text-2xl' : exoCount === 2 ? 'text-base sm:text-lg' : 'text-sm sm:text-base';
+              const statementSize = exoCount === 1 ? 'text-base sm:text-lg leading-relaxed' : exoCount === 2 ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-snug';
+              const quoteSize = exoCount === 1 ? 'text-sm sm:text-base max-h-[260px]' : exoCount === 2 ? 'text-xs sm:text-sm max-h-[190px]' : 'text-xs max-h-[140px]';
+              const qNumSize = exoCount === 1 ? 'w-6 h-6 text-sm' : exoCount === 2 ? 'w-5 h-5 text-xs' : 'w-4 h-4 text-[10px]';
+              const qTextSize = exoCount === 1 ? 'text-sm sm:text-base leading-relaxed font-black' : exoCount === 2 ? 'text-xs sm:text-sm leading-snug font-black' : 'text-xs leading-tight font-bold';
+              const correctionSize = exoCount === 1 ? 'text-xs sm:text-sm p-3' : exoCount === 2 ? 'text-xs p-2' : 'text-[10px] sm:text-xs p-1.5';
+              const badgeSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1' : exoCount === 2 ? 'text-xs px-2.5 py-0.5' : 'text-[10px] px-2 py-0.5';
+              const btnSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1.5' : exoCount === 2 ? 'text-xs px-2.5 py-1' : 'text-[10px] px-2 py-0.5';
+
               return (
                 <div 
                   key={`${exoItem.id}-${slotIndex}`}
                   onClick={() => setActiveTargetSlot(slotIndex)}
-                  className={`bg-white dark:bg-slate-800 rounded-2xl p-3.5 sm:p-4 border shadow-lg flex flex-col justify-between h-full transition-all cursor-pointer ${
+                  className={`bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-5 border shadow-lg flex flex-col justify-between h-full transition-all cursor-pointer ${
                     isTargetingThisSlot
                       ? 'border-amber-400 ring-2 ring-amber-400/50 shadow-amber-500/10'
                       : 'border-slate-200 dark:border-slate-700 hover:border-blue-400'
                   }`}
                 >
                   {/* Header de la carte d'exercice */}
-                  <div className="border-b border-slate-100 dark:border-slate-700 pb-1.5 flex items-center justify-between gap-2 flex-shrink-0">
+                  <div className="border-b border-slate-100 dark:border-slate-700 pb-2 flex items-center justify-between gap-2 flex-shrink-0">
                     <div className="truncate">
-                      <div className="flex items-center space-x-1 mb-0.5">
-                        <span className={`text-[9px] font-black px-2 py-0.5 rounded-full ${isTargetingThisSlot ? 'bg-amber-400 text-slate-950 font-black' : 'bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300'}`}>
+                      <div className="flex items-center space-x-1.5 mb-1">
+                        <span className={`${badgeSize} font-black rounded-full ${isTargetingThisSlot ? 'bg-amber-400 text-slate-950 font-black' : 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-300'}`}>
                           Exercice #{slotIndex + 1} {isTargetingThisSlot ? '(Sélectionné)' : ''}
                         </span>
                       </div>
-                      <h2 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white truncate">
+                      <h2 className={`${titleSize} font-black text-slate-900 dark:text-white truncate`}>
                         {exoItem.title}
                       </h2>
                     </div>
 
                     <button
                       onClick={(e) => { e.stopPropagation(); toggleGlobalSlotSolution(slotIndex); }}
-                      className="px-2.5 py-1 rounded-lg bg-blue-600 text-white font-bold text-[10px] hover:bg-blue-700 flex-shrink-0 transition-colors shadow-sm"
+                      className={`${btnSize} rounded-xl bg-blue-600 text-white font-black hover:bg-blue-700 flex-shrink-0 transition-colors shadow-sm`}
                     >
                       {isGlobalSolRevealed ? 'Masquer' : '10 Réponses'}
                     </button>
                   </div>
 
-                  {/* Énoncé clair et complet */}
-                  <div className="my-1.5 p-2 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-700/80 flex-shrink-0">
-                    <p className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-slate-100 leading-snug">
-                      {exoItem.statement}
-                    </p>
+                  {/* Énoncé / Texte Littéraire d'étude (Adaptif selon exoCount) */}
+                  <div className="my-2 p-3 sm:p-4 rounded-xl bg-amber-50/90 dark:bg-slate-900/90 border-l-4 border-amber-500 border-y border-r border-amber-200 dark:border-amber-900/40 shadow-sm flex-shrink-0">
+                    {exoItem.subject === 'francais' || exoItem.readingText ? (
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between text-amber-900 dark:text-amber-300 font-black text-xs uppercase tracking-wider">
+                          <span className="flex items-center gap-1.5">
+                            <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                            Texte littéraire d'étude (DNB 3ème) :
+                          </span>
+                          {exoItem.year && <span className="text-xs bg-amber-200/80 dark:bg-amber-900/60 px-2 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
+                        </div>
+                        <blockquote className={`font-serif italic ${quoteSize} text-slate-900 dark:text-slate-100 leading-relaxed bg-white/70 dark:bg-slate-950/60 p-3 rounded-lg border border-amber-200/80 dark:border-amber-900/40 overflow-y-auto`}>
+                          "{exoItem.readingText || exoItem.statement}"
+                        </blockquote>
+                        {exoItem.author && (
+                          <div className={`${exoCount === 1 ? 'text-sm' : 'text-xs'} font-black text-right text-amber-900 dark:text-amber-400 italic pt-0.5`}>
+                            — {exoItem.author}, <span className="underline">{exoItem.work}</span>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <p className={`${statementSize} font-bold text-slate-900 dark:text-slate-100`}>
+                        {exoItem.statement}
+                      </p>
+                    )}
                   </div>
 
-                  {/* LES 10 QUESTIONS ADAPTÉES QUI REMPLISSENT HARMONIEUSEMENT TOUT L'ESPACE SANS NÉCESSITER DE SCROLLBAR */}
+                  {/* LES 10 QUESTIONS AVEC TAILLE DYNAMIQUE */}
                   <div className="flex-1 flex flex-col justify-between min-h-0">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 flex-1 h-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1 h-full">
                       {exoItem.questions.map((q, qIdx) => {
                         const isRev = isGlobalSolRevealed || revealedSolutions[`${slotIndex}-${qIdx}`];
 
                         return (
-                          <div key={qIdx} className="p-2 sm:p-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 flex flex-col justify-between flex-1 space-y-1">
+                          <div key={qIdx} className="p-2.5 sm:p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 flex flex-col justify-between flex-1 space-y-1.5">
                             <div className="flex items-start justify-between gap-1.5">
-                              <div className="flex items-start space-x-1.5">
-                                <span className="w-4 h-4 rounded bg-blue-600 text-white font-black text-[9px] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                              <div className="flex items-start space-x-2">
+                                <span className={`${qNumSize} rounded-md bg-blue-600 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm`}>
                                   {qIdx + 1}
                                 </span>
-                                <p className="font-bold text-slate-900 dark:text-white leading-tight text-[11px] sm:text-xs">
+                                <p className={`text-slate-900 dark:text-white ${qTextSize}`}>
                                   {q.text}
                                 </p>
                               </div>
                               <button
                                 onClick={(e) => { e.stopPropagation(); setRevealedSolutions(prev => ({ ...prev, [`${slotIndex}-${qIdx}`]: !prev[`${slotIndex}-${qIdx}`] })); }}
-                                className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors flex-shrink-0"
+                                className={`${btnSize} rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors flex-shrink-0`}
                               >
                                 {isRev ? 'Masquer' : 'Réponse'}
                               </button>
                             </div>
 
                             {isRev && (
-                              <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/70 font-mono text-[9px] sm:text-[10px] text-blue-950 dark:text-blue-200 leading-tight border border-blue-200/60 dark:border-blue-800/60">
+                              <div className={`rounded-lg bg-blue-50 dark:bg-blue-950/70 font-mono text-blue-950 dark:text-blue-200 leading-relaxed border border-blue-200/60 dark:border-blue-800/60 font-semibold ${correctionSize}`}>
                                 {q.correction}
                               </div>
                             )}
