@@ -311,17 +311,17 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
         )}
 
         {/* CONTENU PRINCIPAL À DROITE */}
-        <div className={`${isSidebarOpen ? 'lg:col-span-9' : 'lg:col-span-12'} transition-all duration-300 min-h-[calc(100vh-95px)] flex flex-col`}>
+        <div className={`${isSidebarOpen ? 'lg:col-span-9' : 'lg:col-span-12'} transition-all duration-300 ${isFullscreen ? 'h-[calc(100vh-70px)]' : 'h-[calc(100vh-140px)]'} flex flex-col`}>
           
           {/* GRILLE D'EXERCICES AVEC TAILLE DE POLICE DYNAMIQUE ADAPTÉE AU NOMBRE D'EXERCICES */}
-          <div className={`grid gap-3 flex-1 h-full ${
+          <div className={`grid gap-2 flex-1 h-full min-h-0 ${
             exoCount === 4 
-              ? 'grid-cols-1 md:grid-cols-2 md:grid-rows-2 min-h-[calc(100vh-95px)]' 
+              ? 'grid-cols-1 md:grid-cols-2 md:grid-rows-2 h-full' 
               : exoCount === 2 
-                ? 'grid-cols-1 xl:grid-cols-2 min-h-[calc(100vh-95px)]' 
+                ? 'grid-cols-1 xl:grid-cols-2 h-full' 
                 : exoCount === 3 
-                  ? 'grid-cols-1 xl:grid-cols-3 min-h-[calc(100vh-95px)]' 
-                  : 'grid-cols-1 min-h-[calc(100vh-95px)]'
+                  ? 'grid-cols-1 xl:grid-cols-3 h-full' 
+                  : 'grid-cols-1 h-full'
           }`}>
             
             {activeSlots.map((exoItem, slotIndex) => {
@@ -329,30 +329,34 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
               const isGlobalSolRevealed = showSolutions[slotIndex];
               const isTargetingThisSlot = activeTargetSlot === slotIndex && exoCount > 1;
 
-              // Tailles de police adaptatives (Plus il y a peu d'exos sur l'écran, plus la police est GRANDE !)
-              const titleSize = exoCount === 1 ? 'text-lg sm:text-2xl' : exoCount === 2 ? 'text-base sm:text-lg' : 'text-sm sm:text-base';
-              const statementSize = exoCount === 1 ? 'text-base sm:text-lg leading-relaxed' : exoCount === 2 ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-snug';
-              const quoteSize = exoCount === 1 ? 'text-sm sm:text-base max-h-[260px]' : exoCount === 2 ? 'text-xs sm:text-sm max-h-[190px]' : 'text-xs max-h-[140px]';
-              const qNumSize = exoCount === 1 ? 'w-6 h-6 text-sm' : exoCount === 2 ? 'w-5 h-5 text-xs' : 'w-4 h-4 text-[10px]';
-              const qTextSize = exoCount === 1 ? 'text-sm sm:text-base leading-relaxed font-black' : exoCount === 2 ? 'text-xs sm:text-sm leading-snug font-black' : 'text-xs leading-tight font-bold';
-              const correctionSize = exoCount === 1 ? 'text-xs sm:text-sm p-3' : exoCount === 2 ? 'text-xs p-2' : 'text-[10px] sm:text-xs p-1.5';
-              const badgeSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1' : exoCount === 2 ? 'text-xs px-2.5 py-0.5' : 'text-[10px] px-2 py-0.5';
-              const btnSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1.5' : exoCount === 2 ? 'text-xs px-2.5 py-1' : 'text-[10px] px-2 py-0.5';
+              // Tailles de police et espacements adaptatifs pour tenir sur 1 seule page sans scroll
+              const cardPadding = exoCount === 4 ? 'p-2 sm:p-2.5' : exoCount === 3 ? 'p-2.5 sm:p-3' : 'p-4 sm:p-5';
+              const titleSize = exoCount === 1 ? 'text-lg sm:text-2xl' : exoCount === 2 ? 'text-base sm:text-lg' : exoCount === 3 ? 'text-xs sm:text-sm' : 'text-[11px] sm:text-xs';
+              const statementMargin = exoCount === 4 ? 'my-1 p-1.5 sm:p-2' : exoCount === 3 ? 'my-1.5 p-2 sm:p-2.5' : 'my-2 p-3 sm:p-4';
+              const statementSize = exoCount === 1 ? 'text-base sm:text-lg leading-relaxed' : exoCount === 2 ? 'text-sm sm:text-base leading-relaxed' : exoCount === 3 ? 'text-xs leading-snug' : 'text-[10px] sm:text-[11px] leading-tight';
+              const quoteSize = exoCount === 1 ? 'text-sm sm:text-base max-h-[260px]' : exoCount === 2 ? 'text-xs sm:text-sm max-h-[190px]' : 'text-xs max-h-[120px]';
+              const qNumSize = exoCount === 1 ? 'w-6 h-6 text-sm' : exoCount === 2 ? 'w-5 h-5 text-xs' : exoCount === 3 ? 'w-4 h-4 text-[10px]' : 'w-3.5 h-3.5 text-[9px]';
+              const qTextSize = exoCount === 1 ? 'text-sm sm:text-base leading-relaxed font-black' : exoCount === 2 ? 'text-xs sm:text-sm leading-snug font-black' : exoCount === 3 ? 'text-xs leading-tight font-bold' : 'text-[9px] sm:text-[10px] leading-tight font-bold';
+              const qItemPadding = exoCount === 4 ? 'py-0.5 px-1.5' : exoCount === 3 ? 'py-1 px-2' : 'p-2.5 sm:p-3';
+              const qGridGap = exoCount === 4 ? 'gap-0.5' : exoCount === 3 ? 'gap-1' : 'gap-2';
+              const correctionSize = exoCount === 1 ? 'text-xs sm:text-sm p-3' : exoCount === 2 ? 'text-xs p-2' : 'text-[9px] p-1';
+              const badgeSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1' : exoCount === 2 ? 'text-xs px-2.5 py-0.5' : 'text-[9px] px-1.5 py-0.5';
+              const btnSize = exoCount === 1 ? 'text-xs sm:text-sm px-3 py-1.5' : exoCount === 2 ? 'text-xs px-2.5 py-1' : 'text-[9px] px-1.5 py-0.5';
 
               return (
                 <div 
                   key={`${exoItem.id}-${slotIndex}`}
                   onClick={() => setActiveTargetSlot(slotIndex)}
-                  className={`bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-5 border shadow-lg flex flex-col justify-between h-full transition-all cursor-pointer ${
+                  className={`bg-white dark:bg-slate-800 rounded-2xl ${cardPadding} border shadow-lg flex flex-col justify-between h-full transition-all cursor-pointer overflow-hidden ${
                     isTargetingThisSlot
                       ? 'border-amber-400 ring-2 ring-amber-400/50 shadow-amber-500/10'
                       : 'border-slate-200 dark:border-slate-700 hover:border-blue-400'
                   }`}
                 >
                   {/* Header de la carte d'exercice */}
-                  <div className="border-b border-slate-100 dark:border-slate-700 pb-2 flex items-center justify-between gap-2 flex-shrink-0">
+                  <div className="border-b border-slate-100 dark:border-slate-700 pb-1 flex items-center justify-between gap-2 flex-shrink-0">
                     <div className="truncate">
-                      <div className="flex items-center space-x-1.5 mb-1">
+                      <div className="flex items-center space-x-1.5 mb-0.5">
                         <span className={`${badgeSize} font-black rounded-full ${isTargetingThisSlot ? 'bg-amber-400 text-slate-950 font-black' : 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-300'}`}>
                           Exercice #{slotIndex + 1} {isTargetingThisSlot ? '(Sélectionné)' : ''}
                         </span>
@@ -371,17 +375,17 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
                   </div>
 
                   {/* Énoncé / Texte Littéraire d'étude (Adaptif selon exoCount) */}
-                  <div className="my-2 p-3 sm:p-4 rounded-xl bg-amber-50/90 dark:bg-slate-900/90 border-l-4 border-amber-500 border-y border-r border-amber-200 dark:border-amber-900/40 shadow-sm flex-shrink-0">
+                  <div className={`${statementMargin} rounded-xl bg-amber-50/90 dark:bg-slate-900/90 border-l-4 border-amber-500 border-y border-r border-amber-200 dark:border-amber-900/40 shadow-sm flex-shrink-0`}>
                     {exoItem.subject === 'francais' || exoItem.readingText ? (
-                      <div className="space-y-1.5">
+                      <div className="space-y-1">
                         <div className="flex items-center justify-between text-amber-900 dark:text-amber-300 font-black text-xs uppercase tracking-wider">
                           <span className="flex items-center gap-1.5">
-                            <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                            <BookOpen className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                             Texte littéraire d'étude (DNB 3ème) :
                           </span>
-                          {exoItem.year && <span className="text-xs bg-amber-200/80 dark:bg-amber-900/60 px-2 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
+                          {exoItem.year && <span className="text-[10px] bg-amber-200/80 dark:bg-amber-900/60 px-1.5 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
                         </div>
-                        <blockquote className={`font-serif italic ${quoteSize} text-slate-900 dark:text-slate-100 leading-relaxed bg-white/70 dark:bg-slate-950/60 p-3 rounded-lg border border-amber-200/80 dark:border-amber-900/40 overflow-y-auto`}>
+                        <blockquote className={`font-serif italic ${quoteSize} text-slate-900 dark:text-slate-100 leading-relaxed bg-white/70 dark:bg-slate-950/60 p-2 rounded-lg border border-amber-200/80 dark:border-amber-900/40 overflow-y-auto`}>
                           "{exoItem.readingText || exoItem.statement}"
                         </blockquote>
                         {exoItem.author && (
@@ -398,32 +402,32 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
                   </div>
 
                   {/* LES 10 QUESTIONS AVEC TAILLE DYNAMIQUE */}
-                  <div className="flex-1 flex flex-col justify-between min-h-0">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1 h-full">
+                  <div className="flex-1 flex flex-col justify-between min-h-0 overflow-hidden">
+                    <div className={`grid grid-cols-1 ${qGridGap} flex-1 h-full min-h-0`}>
                       {exoItem.questions.map((q, qIdx) => {
                         const isRev = isGlobalSolRevealed || revealedSolutions[`${slotIndex}-${qIdx}`];
 
                         return (
-                          <div key={qIdx} className="p-2.5 sm:p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 flex flex-col justify-between flex-1 space-y-1.5">
-                            <div className="flex items-start justify-between gap-1.5">
-                              <div className="flex items-start space-x-2">
-                                <span className={`${qNumSize} rounded-md bg-blue-600 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm`}>
+                          <div key={qIdx} className={`${qItemPadding} rounded-lg bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 flex flex-col justify-center flex-1 space-y-0.5 w-full min-h-0`}>
+                            <div className="flex items-center justify-between gap-1.5 w-full">
+                              <div className="flex items-center space-x-1.5 flex-1 min-w-0">
+                                <span className={`${qNumSize} rounded-md bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm font-bold`}>
                                   {qIdx + 1}
                                 </span>
-                                <p className={`text-slate-900 dark:text-white ${qTextSize}`}>
+                                <p className={`text-slate-900 dark:text-white ${qTextSize} flex-1 truncate sm:whitespace-normal`}>
                                   {q.text}
                                 </p>
                               </div>
                               <button
                                 onClick={(e) => { e.stopPropagation(); setRevealedSolutions(prev => ({ ...prev, [`${slotIndex}-${qIdx}`]: !prev[`${slotIndex}-${qIdx}`] })); }}
-                                className={`${btnSize} rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors flex-shrink-0`}
+                                className={`${btnSize} rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors flex-shrink-0 font-bold`}
                               >
                                 {isRev ? 'Masquer' : 'Réponse'}
                               </button>
                             </div>
 
                             {isRev && (
-                              <div className={`rounded-lg bg-blue-50 dark:bg-blue-950/70 font-mono text-blue-950 dark:text-blue-200 leading-relaxed border border-blue-200/60 dark:border-blue-800/60 font-semibold ${correctionSize}`}>
+                              <div className={`rounded-lg bg-blue-50 dark:bg-blue-950/70 font-mono text-blue-950 dark:text-blue-200 leading-relaxed border border-blue-200/60 dark:border-blue-800/60 font-semibold ${correctionSize} w-full`}>
                                 {q.correction}
                               </div>
                             )}

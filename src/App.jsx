@@ -30,23 +30,23 @@ export default function App() {
       />
 
       {/* Conteneur Principal */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-4 lg:px-6 py-3 space-y-4">
         
         {/* Banner d'accueil */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-950 text-white p-8 sm:p-12 shadow-2xl border border-blue-500/30">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-950 text-white p-4 sm:p-6 shadow-xl border border-blue-500/30">
           <div className="absolute -right-10 -bottom-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="relative z-10 max-w-3xl space-y-3">
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-bold text-blue-200">
-              <BookOpen className="w-4 h-4 text-blue-300" />
+          <div className="relative z-10 max-w-3xl space-y-1.5">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-[11px] font-bold text-blue-200">
+              <BookOpen className="w-3.5 h-3.5 text-blue-300" />
               <span>Exercices de Collège 3ème (Collection Officielle Brevet)</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            <h1 className="text-xl sm:text-3xl font-black tracking-tight leading-tight">
               Exercices structurés pour vos <span className="bg-gradient-to-r from-blue-300 via-amber-200 to-purple-300 bg-clip-text text-transparent">Révisions Brevet</span> !
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
               Retrouvez 200 exercices complets et 2000 questions regroupées (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) à rédiger sur votre cahier avec les <strong>corrections officielles</strong>.
             </p>
           </div>
