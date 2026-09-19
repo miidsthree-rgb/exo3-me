@@ -374,30 +374,47 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
                     </button>
                   </div>
 
-                  {/* Énoncé / Document d'Étude (Tous sujets) */}
-                  <div className={`${statementMargin} rounded-r-lg bg-slate-950/70 border-l-2 border-amber-400 flex-shrink-0 p-2 sm:p-2.5 space-y-1`}>
-                    <div className="flex items-center justify-between text-amber-300 font-bold text-[11px] sm:text-xs uppercase tracking-wider">
-                      <span className="flex items-center gap-1.5">
-                        <BookOpen className="w-3.5 h-3.5 text-amber-400" />
-                        {exoItem.subject === 'techno' ? 'Schéma & Programme Scratch :' : 'Document / Texte d\'étude :'}
-                      </span>
-                      {exoItem.year && <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
-                    </div>
-
-                    {exoItem.subject === 'techno' ? (
-                      <ScratchBlockDiagram exoId={slotIndex + 1} />
-                    ) : (
-                      <blockquote className={`font-serif italic ${quoteSize} text-slate-200 leading-relaxed bg-slate-900/60 p-2 rounded border border-slate-800 overflow-y-auto text-xs sm:text-sm`}>
-                        "{exoItem.readingText || exoItem.statement}"
-                      </blockquote>
-                    )}
-
-                    {exoItem.author && (
-                      <div className="text-[11px] sm:text-xs font-bold text-right text-amber-300 italic">
-                        — {exoItem.author}{exoItem.work ? <span className="underline ml-1">({exoItem.work})</span> : ''}
+                  {/* ÉNONCÉ DE L'EXERCICE (Toujours affiché si présent : Maths, Physique-Chimie, etc.) */}
+                  {exoItem.statement && (
+                    <div className="my-1.5 p-2 px-3 rounded-xl bg-blue-950/70 border border-blue-500/40 text-blue-100 text-xs sm:text-sm font-medium flex items-start gap-2 shadow-sm flex-shrink-0">
+                      <PenTool className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                      <div className="space-y-0.5 min-w-0">
+                        <span className="font-black text-blue-300 uppercase tracking-wider text-[10px] block">
+                          Énoncé de l'exercice :
+                        </span>
+                        <p className="text-slate-200 text-xs sm:text-sm leading-snug font-semibold">
+                          {exoItem.statement}
+                        </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
+
+                  {/* DOCUMENT / TEXTE D'ÉTUDE (Seulement si utile pour l'exercice : Français, HG, SVT, Techno, Anglais C2, Espagnol C2) */}
+                  {exoItem.hasDocument && (
+                    <div className={`${statementMargin} rounded-r-lg bg-slate-950/70 border-l-2 border-amber-400 flex-shrink-0 p-2 sm:p-2.5 space-y-1`}>
+                      <div className="flex items-center justify-between text-amber-300 font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                        <span className="flex items-center gap-1.5">
+                          <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+                          {exoItem.subject === 'techno' ? 'Schéma & Programme Scratch :' : 'Document / Texte d\'étude :'}
+                        </span>
+                        {exoItem.year && <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
+                      </div>
+
+                      {exoItem.subject === 'techno' ? (
+                        <ScratchBlockDiagram exoId={slotIndex + 1} />
+                      ) : (
+                        <blockquote className={`font-serif italic ${quoteSize} text-slate-200 leading-relaxed bg-slate-900/60 p-2 rounded border border-slate-800 overflow-y-auto text-xs sm:text-sm`}>
+                          "{exoItem.readingText}"
+                        </blockquote>
+                      )}
+
+                      {exoItem.author && (
+                        <div className="text-[11px] sm:text-xs font-bold text-right text-amber-300 italic">
+                          — {exoItem.author}{exoItem.work ? <span className="underline ml-1">({exoItem.work})</span> : ''}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {/* LES 10 QUESTIONS (Liste épurée et aérée) */}
                   <div className="flex-1 flex flex-col justify-between min-h-0 overflow-hidden">
