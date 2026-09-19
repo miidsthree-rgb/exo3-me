@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MANUEL_EXERCISES, SUBJECTS } from '../data/questionsData';
 import { BookOpen, PenTool, Eye, EyeOff, CheckCircle2, Trophy, Printer, Bookmark, Maximize2, Minimize2, ListFilter, PanelLeftClose, PanelLeftOpen, Sparkles } from 'lucide-react';
+import ScratchBlockDiagram from './ScratchBlockDiagram';
 
 export default function CahierExerciseRunner({ selectedSubject, onExerciseComplete }) {
   const [activeSubject, setActiveSubject] = useState(selectedSubject || 'maths');
@@ -373,30 +374,28 @@ export default function CahierExerciseRunner({ selectedSubject, onExerciseComple
                     </button>
                   </div>
 
-                  {/* Énoncé / Texte Littéraire d'étude (Épuré) */}
-                  <div className={`${statementMargin} rounded-r-lg bg-slate-950/70 border-l-2 border-amber-400 flex-shrink-0`}>
-                    {exoItem.subject === 'francais' || exoItem.readingText ? (
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between text-amber-300 font-bold text-xs uppercase tracking-wider">
-                          <span className="flex items-center gap-1.5">
-                            <BookOpen className="w-3.5 h-3.5 text-amber-400" />
-                            Texte littéraire d'étude :
-                          </span>
-                          {exoItem.year && <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
-                        </div>
-                        <blockquote className={`font-serif italic ${quoteSize} text-slate-200 leading-relaxed bg-slate-900/60 p-2 rounded border border-slate-800 overflow-y-auto`}>
-                          "{exoItem.readingText || exoItem.statement}"
-                        </blockquote>
-                        {exoItem.author && (
-                          <div className="text-xs font-bold text-right text-amber-300 italic">
-                            — {exoItem.author}, <span className="underline">{exoItem.work}</span>
-                          </div>
-                        )}
-                      </div>
+                  {/* Énoncé / Document d'Étude (Tous sujets) */}
+                  <div className={`${statementMargin} rounded-r-lg bg-slate-950/70 border-l-2 border-amber-400 flex-shrink-0 p-2 sm:p-2.5 space-y-1`}>
+                    <div className="flex items-center justify-between text-amber-300 font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                      <span className="flex items-center gap-1.5">
+                        <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+                        {exoItem.subject === 'techno' ? 'Schéma & Programme Scratch :' : 'Document / Texte d\'étude :'}
+                      </span>
+                      {exoItem.year && <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">{exoItem.year}</span>}
+                    </div>
+
+                    {exoItem.subject === 'techno' ? (
+                      <ScratchBlockDiagram exoId={slotIndex + 1} />
                     ) : (
-                      <p className={`${statementSize} text-slate-200 leading-relaxed`}>
-                        {exoItem.statement}
-                      </p>
+                      <blockquote className={`font-serif italic ${quoteSize} text-slate-200 leading-relaxed bg-slate-900/60 p-2 rounded border border-slate-800 overflow-y-auto text-xs sm:text-sm`}>
+                        "{exoItem.readingText || exoItem.statement}"
+                      </blockquote>
+                    )}
+
+                    {exoItem.author && (
+                      <div className="text-[11px] sm:text-xs font-bold text-right text-amber-300 italic">
+                        — {exoItem.author}{exoItem.work ? <span className="underline ml-1">({exoItem.work})</span> : ''}
+                      </div>
                     )}
                   </div>
 
