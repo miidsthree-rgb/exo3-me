@@ -47,7 +47,7 @@ export default function App() {
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-              Retrouvez 200 exercices complets et 2000 questions regroupées (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) à rédiger sur votre cahier avec les <strong>corrections officielles</strong>.
+              Retrouvez <strong>2 000 exercices complets</strong> et <strong>20 000 questions</strong> regroupées (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) à rédiger sur votre cahier avec les <strong>corrections officielles</strong>.
             </p>
           </div>
         </div>
